@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nosso Amor 💖</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Quicksand:wght@400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+      font-family: 'Quicksand', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 60px 20px;
+      color: #333;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .container {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 20px;
+      max-width: 850px;
+      width: 100%;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', cursive;
+      font-size: 42px;
+      color: #e75480;
+      margin-bottom: 10px;
+    }
+
+    #typed-text {
+      font-size: 18px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      min-height: 200px;
+      margin: 30px 0;
+      color: #444;
+    }
+
+    .footer {
+      font-weight: bold;
+      color: #a64ac9;
+      margin-top: 30px;
+      font-size: 18px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 160px;
+      margin-top: 15px;
+      padding: 15px;
+      font-size: 16px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      background-color: #fff4fb;
+      font-family: 'Quicksand', sans-serif;
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 12px 24px;
+      background-color: #f48fb1;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ec407a;
+    }
+
+    .recadinhos {
+      margin-top: 40px;
+      background: #fffafc;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      text-align: left;
+    }
+
+    .recadinhos h2 {
+      text-align: center;
+      color: #d6336c;
+    }
+
+    .heart {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Heart_symbol_red.svg/1024px-Heart_symbol_red.svg.png') no-repeat center center/contain;
+      animation: floatHearts 10s infinite ease-in-out;
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    @keyframes floatHearts {
+      0% { transform: translateY(0) scale(1); opacity: 0.4; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(-100vh) scale(1.3); opacity: 0; }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 25px 20px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      #typed-text {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Nosso Amor 💖</h1>
+
+    <div id="typed-text">Carregando algo muito especial...</div>
+
+    <div class="footer">
+      Para sempre com você,<br/>
+      Seu eterno namorado 💌
+    </div>
+
+    <div class="recadinhos">
+      <h2>✨ Recadinhos da Princesa ✨</h2>
+      <p>Deixe um recado pra mim sempre que quiser! 💬</p>
+
+      <textarea id="recado" placeholder="Escreva aqui o que quiser..."></textarea>
+      <button onclick="salvarRecado()">Salvar Recado</button>
+      <p id="mensagemSalva" style="color: green; margin-top: 10px;"></p>
+
+      <div style="margin-top: 30px;">
+        <h3>📌 Último Recado Salvo:</h3>
+        <div id="recadoExibido" style="white-space: pre-wrap; background: #fff0f7; padding: 15px; border-radius: 10px; border: 1px solid #fbc2eb; color: #333;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Corações flutuantes -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 800);
+
+    // Texto com efeito digitando
+    const text = `
+Oi minha princesa 💞
+
+Hoje eu quis criar um cantinho só nosso. Um lugar onde a gente pode guardar amor, carinho e palavras bonitas.
+
+Você é a luz da minha vida, a razão do meu sorriso e o sonho que eu tenho o privilégio de viver acordado. Cada dia com você é um presente que eu agradeço de coração.
+
+Esse espacinho aqui é só nosso. E quero que a gente volte aqui sempre, pra lembrar como o amor pode ser leve, lindo e doce. ✨
+
+Te amo infinitamente. 💖
+    `;
+
+    let i = 0;
+    const speed = 45;
+
+    function typeWriter() {
+      const el = document.getElementById("typed-text");
+      el.textContent = "";
+      function write() {
+        if (i < text.length) {
+          el.textContent += text.charAt(i);
+          i++;
+          setTimeout(write, speed);
+        }
+      }
+      write();
+    }
+
+    function salvarRecado() {
+      const recado = document.getElementById('recado').value;
+      localStorage.setItem('recadoNamorada', recado);
+      document.getElementById('mensagemSalva').textContent = "Recado salvo com amor! 💌";
+      document.getElementById('recadoExibido').textContent = recado;
+    }
+
+    function carregarRecado() {
+      const recadoSalvo = localStorage.getItem('recadoNamorada');
+      if (recadoSalvo) {
+        document.getElementById('recado').value = recadoSalvo;
+        document.getElementById('recadoExibido').textContent = recadoSalvo;
+      } else {
+        document.getElementById('recadoExibido').textContent = "Nenhum recado salvo ainda. ❤️";
+      }
+    }
+
+    window.onload = () => {
+      carregarRecado();
+      setTimeout(typeWriter, 1000);
+    };
+  </script>
+</body>
+</html>
